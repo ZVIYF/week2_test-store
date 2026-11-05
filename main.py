@@ -13,9 +13,9 @@ def main_menu():
                 case 1:
                     orders.add_new_order()
                 case 2:
-                    pass
+                    prints.print_orders()
                 case 3:
-                    pass
+                    menu.find_order_by_id()
                 case 4:
                     pass
                 case 5:

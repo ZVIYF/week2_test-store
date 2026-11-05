@@ -76,3 +76,9 @@ def add_new_order():
     storage.write_orders(orders)
 
 
+def get_order(order_id):
+    order_list = storage.load_orders() 
+    for order in order_list:
+        if order["id"] == order_id:
+            return order
+    raise ValueError("Order ID is not exist")

@@ -1,21 +1,27 @@
 import Products
 
-def get_order_total(order_items:list)->int|float:
+def get_order_subtotal(order_items:list):
     subtotal = 0
     for item in order_items:
-        price = Products.get_product_price(item["product_id"])
+        price = Products.get_product_price(item ["product_id"])
         item_subtotal = item["quantity"] * price
         subtotal += item_subtotal
     discount = calculate_discount(subtotal)
-    return subtotal - discount 
+    return subtotal  
+
+
+def get_order_total(order):
+    subtotal = get_order_subtotal(order["items"])
+    discount = subtotal * calculate_discount(subtotal)
+    return subtotal - discount
 
 def calculate_discount(subtotal):
     if subtotal < 300:
         return 0
     elif subtotal < 700:
-        return subtotal * 0.05
+        return 0.05
     elif subtotal < 1500:
-        return subtotal * 0.1
+        return 0.1
     return subtotal * 0.15
 
 

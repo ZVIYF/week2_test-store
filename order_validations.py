@@ -14,3 +14,7 @@ def is_enough()->bool:
                     raise ValueError("Please ensure with 'Y' or 'N' only")
         except ValueError as error:
             print(f"error: {error}")
+
+
+def is_closed(order):
+    return order["status"] == "CLOSED"
