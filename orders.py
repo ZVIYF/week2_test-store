@@ -82,3 +82,22 @@ def get_order(order_id):
         if order["id"] == order_id:
             return order
     raise ValueError("Order ID is not exist")
+
+def get_closed_orders():
+    orders = storage.load_orders()
+    closed_orders = []
+    for o in orders:
+        if o["status"] == "CLOSED":
+            closed_orders.append(o)
+    return closed_orders
+
+
+def sum_of_orders(orders_list):
+    total = 0
+    for o in orders_list:
+        total += o["total"]
+    return total
+
+def sort_orders(orders_list):
+    return sorted(orders_list, lambda o: o["total"], reverse=True)
+

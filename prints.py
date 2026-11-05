@@ -1,4 +1,4 @@
-import Products, calcs, storage
+import Products, calcs, storage, orders
 
 
 def print_main_menu():
@@ -40,3 +40,37 @@ def print_orders():
         
     if not order_list:
         print("no order yet")
+
+
+def print_most_expensive():
+    try:
+        closed_orders = orders.get_closed_orders()
+        if not closed_orders:
+            raise ValueError("No closed orders yet")
+        high_to_low = orders.sort_orders(closed_orders)
+        print(f"most expensive order: {high_to_low[0]["id"]}")
+    except ValueError as error:
+        print(f"error: {error}")
+
+def print_3_expensive():
+    try:
+        closed_orders = orders.get_closed_orders()
+        if not closed_orders:
+            raise ValueError("No closed orders yet")
+        high_to_low = orders.sort_orders(closed_orders)
+        print("most expensive order:")
+        print(
+            high_to_low[0]["id"],
+            high_to_low[1]["id"],
+            high_to_low[2]["id"]
+            )
+    except ValueError as error:
+        print(f"error: {error}")
+    except IndexError:
+        print("there are less then 3 orders")
+
+def print_report():
+    print(f"total orders: {len(storage.load_orders())}")
+    print(f"closed orders total: {orders.sum_of_order(orders.get_closed_orders())}")
+    print_most_expensive()
+    print_3_expensive()

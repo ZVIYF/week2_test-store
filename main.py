@@ -17,9 +17,9 @@ def main_menu():
                 case 3:
                     menu.find_order_by_id()
                 case 4:
-                    pass
+                    menu.close_order()
                 case 5:
-                    pass
+                    prints.print_report()
                 case _:
                     raise ValueError("choice is not in the menu")
         except ValueError as error:
